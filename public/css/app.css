@@ -6,3 +6,7 @@
 .currency_info, .hidden {
   display: none;
 }
+
+#currencies tr td {
+  cursor: pointer;
+}
