@@ -1,0 +1,8 @@
+#app {
+  width: 1000px;
+  margin: 25px auto;
+}
+
+.currency_info, .hidden {
+  display: none;
+}

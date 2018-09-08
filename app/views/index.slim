@@ -1,0 +1,69 @@
+doctype html
+html lang="en"
+  head
+    title Coin Monitor
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+
+    link rel="stylesheet" href="//unpkg.com/semantic-ui@2.3.3/dist/semantic.min.css"
+    link rel="stylesheet" href="//unpkg.com/datatables.net-se@1.10.19/css/dataTables.semanticui.min.css"
+    link rel="stylesheet" href="/css/app.css"
+  body
+    #app
+      - for currency in currencies
+        == partial('currency', currency: currency)
+
+      .currencies_list
+        h2.ui.header
+          img.ui.circular.image src="/img/#{major.key}.svg"
+          .content
+            | Currencies list
+            .sub.header Updated #{time_ago(Pull.last.created_at)}
+
+        table#currencies.ui.celled.table style="width:100%"
+          thead
+            tr
+              th Rank
+              th Name
+              th Market Cap
+              th Price
+              th Avg Price
+              th Coin Price
+              th Circulating Supply
+              th Change
+          tbody
+            - for currency in currencies
+              tr data-currency=currency.key
+                td = currency.latest.place + 1
+                td
+                  img.ui.avatar.image src="/img/#{currency.key}.svg"
+                  span = currency.name
+                td.right.aligned data-sort=currency.latest.market_cap
+                  | $#{number_to_currency(currency.latest.market_cap)}
+                td.right.aligned data-sort=currency.price
+                  | $#{number_to_currency(currency.price)}
+                td.right.aligned data-sort=currency.avg_price
+                  | $#{number_to_currency(currency.avg_price)}
+                td.right.aligned data-sort=currency.latest.coin_price
+                  | #{sprintf('%.8f', currency.latest.coin_price)}
+                  b &nbsp; #{major.key}
+                td.right.aligned data-sort=currency.supply
+                  | #{number_to_currency(currency.supply)}
+                  b &nbsp; #{currency.key}
+                td.right.aligned data-sort=currency.latest.change
+                  - if currency.latest.change > 0
+                    span.ui.green.small.header
+                      | #{sprintf('%.2f', currency.latest.change)}%
+                      i.angle.up.icon
+                  - else
+                    span.ui.red.small.header
+                      | #{sprintf('%.2f', currency.latest.change)}%
+                      i.angle.down.icon
+
+    script src="//unpkg.com/jquery@3.3.1/dist/jquery.js"
+    script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"
+    script src="//unpkg.com/datatables.net-se@1.10.19/js/dataTables.semanticui.min.js"
+    / script src="//cdn.datatables.net/plug-ins/1.10.19/type-detection/currency.js"
+    script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"
+    script src="/js/app.js"
