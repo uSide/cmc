@@ -6,13 +6,12 @@ module Currencies
     private
 
     def load
-      currencies = Currency.all.map do |currency|
-        pulls = Pull
-                .where(currency_id: currency.id)
-                .order(Sequel.desc(:created_at))
+      currencies = Currency.eager_graph(:pulls)
+                           .order { pulls[:created_at] }
+                           .all.map do |currency|
         currency.values
                 .slice(:id, :key, :name, :price, :avg_price, :supply)
-                .merge(pulls: pulls.to_a)
+                .merge(pulls: currency.pulls.to_a)
       end
       Success(currencies: currencies)
     end
