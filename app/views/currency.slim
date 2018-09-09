@@ -1,13 +1,13 @@
 
-.currency_info id=currency.key
+.currency_info id=currency[:key]
   h2.ui.header
-    img.ui.circular.image src="/img/#{currency.key}.svg"
+    img.ui.circular.image src="/img/#{currency[:key]}.svg"
     .content
-      | #{currency.name}
-      .sub.header #{t.updated} #{time_ago(currency.pulls.last.created_at)}
+      | #{currency[:name]}
+      .sub.header #{t.updated} #{time_ago(currency[:updated_at])}
   .ui.grid
     .eleven.wide.column
-      table.ui.celled.table data-currency=currency.key style="width:100%"
+      table.ui.celled.table data-currency=currency[:key] style="width:100%"
         thead
           tr
             th = t.currency.market_cap
@@ -15,26 +15,26 @@
             th = t.currency.supply
             th = t.currency.date
         tbody
-          - for pull in Pull.where(currency_id: currency.id).order(:created_at).reverse
+          - for pull in currency[:pulls]
             tr
-              td.right.aligned $#{number_to_currency(pull.market_cap)}
-              td.right.aligned $#{number_to_currency(pull.price)}
+              td.right.aligned $#{number_to_currency(pull[:market_cap])}
+              td.right.aligned $#{number_to_currency(pull[:price])}
               td.right.aligned
-                | #{number_to_currency(pull.supply)}
-                b &nbsp; #{currency.key}
-              td.right.aligned = Time.at(pull.created_at).to_s
+                | #{number_to_currency(pull[:supply])}
+                b &nbsp; #{currency[:key]}
+              td.right.aligned = Time.at(pull[:created_at]).to_s
     .five.wide.column
       div data-chart=""
         canvas
-        .hidden = Oj.dump(Pull.where(currency_id: currency.id).order(:created_at).limit(144).map(&:price))
-      form.ui.form data-currency=currency.id
+        .hidden = currency[:chart]
+      form.ui.form data-currency=currency[:id]
         .ui.negative.hidden.message = t.currency.error
         .field
           label = t.currency.price
-          input name="price" type="text" value="#{currency.price}"
+          input name="price" type="text" value="#{currency[:price]}"
         .field
           label = t.currency.supply
-          input name="supply" type="text" value="#{currency.supply}"
+          input name="supply" type="text" value="#{currency[:supply]}"
         .ui.fluid.buttons
-          button.ui.button data-back=currency.key = t.currency.back
+          button.ui.button data-back=currency[:key] = t.currency.back
           button.positive.ui.button type="submit" = t.currency.save

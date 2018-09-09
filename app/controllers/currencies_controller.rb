@@ -1,10 +1,6 @@
 class CurrenciesController < ApplicationController
   def index
-    currencies = Currency.all
-    render html: 'index', context: {
-      major: currencies.find { |c| c.latest.place.zero? },
-      currencies: currencies
-    }
+    render html: 'index', context: Currencies::Index.perform.value!
   end
 
   def update

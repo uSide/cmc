@@ -16,10 +16,10 @@ html lang="en"
 
       .currencies_list
         h2.ui.header
-          img.ui.circular.image src="/img/#{major.key}.svg"
+          img.ui.circular.image src="/img/#{major[:key]}.svg"
           .content
             | #{t.currencies.list}
-            .sub.header #{t.updated} #{time_ago(Pull.last.created_at)}
+            .sub.header #{t.updated} #{time_ago(updated_at)}
           a.ui.right.floated.button href=t.switch.link = t.switch.text
 
         table#currencies.ui.celled.table style="width:100%"
@@ -35,31 +35,31 @@ html lang="en"
               th = t.currencies.head.change
           tbody
             - for currency in currencies
-              tr data-currency=currency.key
-                td = currency.latest.place + 1
+              tr data-currency=currency[:key]
+                td = currency[:place] + 1
                 td
-                  img.ui.avatar.image src="/img/#{currency.key}.svg"
-                  span = currency.name
-                td.right.aligned data-sort=currency.latest.market_cap
-                  | $#{number_to_currency(currency.latest.market_cap)}
-                td.right.aligned data-sort=currency.price
-                  | $#{number_to_currency(currency.price)}
-                td.right.aligned data-sort=currency.avg_price
-                  | $#{number_to_currency(currency.avg_price)}
-                td.right.aligned data-sort=currency.latest.coin_price
-                  | #{sprintf('%.8f', currency.latest.coin_price)}
-                  b &nbsp; #{major.key}
-                td.right.aligned data-sort=currency.supply
-                  | #{number_to_currency(currency.supply)}
-                  b &nbsp; #{currency.key}
-                td.right.aligned data-sort=currency.latest.change
-                  - if currency.latest.change > 0
+                  img.ui.avatar.image src="/img/#{currency[:key]}.svg"
+                  span = currency[:name]
+                td.right.aligned data-sort=currency[:market_cap]
+                  | $#{number_to_currency(currency[:market_cap])}
+                td.right.aligned data-sort=currency[:price]
+                  | $#{number_to_currency(currency[:price])}
+                td.right.aligned data-sort=currency[:avg_price]
+                  | $#{number_to_currency(currency[:avg_price])}
+                td.right.aligned data-sort=currency[:coin_price]
+                  | #{sprintf('%.8f', currency[:coin_price])}
+                  b &nbsp; #{major[:key]}
+                td.right.aligned data-sort=currency[:supply]
+                  | #{number_to_currency(currency[:supply])}
+                  b &nbsp; #{currency[:key]}
+                td.right.aligned data-sort=currency[:change]
+                  - if currency[:change] > 0
                     span.ui.green.small.header
-                      | #{sprintf('%.2f', currency.latest.change)}%
+                      | #{sprintf('%.2f', currency[:change])}%
                       i.angle.up.icon
                   - else
                     span.ui.red.small.header
-                      | #{sprintf('%.2f', currency.latest.change)}%
+                      | #{sprintf('%.2f', currency[:change])}%
                       i.angle.down.icon
 
     script src="//unpkg.com/jquery@3.3.1/dist/jquery.js"

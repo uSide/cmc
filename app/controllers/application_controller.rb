@@ -30,7 +30,7 @@ class ApplicationController
   def initialize(env)
     @request = Rack::Request.new(env)
     R18n.set('en')
-    R18n.set('ru') if params.has_key?('ru')
+    R18n.set('ru') if params.key?('ru')
   end
 
   class << self

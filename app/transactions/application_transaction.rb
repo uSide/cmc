@@ -12,7 +12,7 @@ class ApplicationTransaction
 
   class << self
     # rubocop:disable Metrics/MethodLength
-    def perform(arguments = {}) # rubocop:disable Metrics/AbcSize
+    def perform(arguments = {})
       start = Time.now
 
       begin
