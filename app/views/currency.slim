@@ -4,16 +4,16 @@
     img.ui.circular.image src="/img/#{currency.key}.svg"
     .content
       | #{currency.name}
-      .sub.header Updated #{time_ago(currency.pulls.last.created_at)}
+      .sub.header #{t.updated} #{time_ago(currency.pulls.last.created_at)}
   .ui.grid
     .eleven.wide.column
       table.ui.celled.table data-currency=currency.key style="width:100%"
         thead
           tr
-            th Market Cap
-            th Price
-            th Supply
-            th Date
+            th = t.currency.market_cap
+            th = t.currency.price
+            th = t.currency.supply
+            th = t.currency.date
         tbody
           - for pull in Pull.where(currency_id: currency.id).order(:created_at).reverse
             tr
@@ -28,14 +28,13 @@
         canvas
         .hidden = Oj.dump(Pull.where(currency_id: currency.id).order(:created_at).limit(144).map(&:price))
       form.ui.form data-currency=currency.id
-        .ui.negative.hidden.message Unable to save currency info
+        .ui.negative.hidden.message = t.currency.error
         .field
-          label Price
+          label = t.currency.price
           input name="price" type="text" value="#{currency.price}"
         .field
-          label Circulating Supply
+          label = t.currency.supply
           input name="supply" type="text" value="#{currency.supply}"
         .ui.fluid.buttons
-          button.ui.button data-back=currency.key Back
-          .or
-          button.positive.ui.button type="submit" Save
+          button.ui.button data-back=currency.key = t.currency.back
+          button.positive.ui.button type="submit" = t.currency.save

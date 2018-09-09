@@ -1,0 +1,38 @@
+currencies:
+  list: Список валют
+  head:
+    rank: Ранг
+    name: Название
+    market_cap: Капитализация
+    price: Цена
+    avg_price: Средняя Цена
+    coin_price: Цена монеты
+    supply: Оборотное Снабжение
+    change: Изменение
+currency:
+  error: Не удалось сохранить информацию о валюте
+  market_cap: Капитализация
+  price: Цена
+  supply: Оборотное Снабжение
+  date: Дата
+  back: Назад
+  save: Сохранить
+updated: Обновлено
+switch:
+  text: English
+  link: /
+  lang: ru
+time_ago:
+  now: только что
+  minutes: !!pl
+    1: 'минуту назад'
+    2: '%1 минуты назад'
+    n: '%1 минут назад'
+  hours: !!pl
+    1: 'час назад'
+    2: '%1 часа назад'
+    n: '%1 часов назад'
+  days: !!pl
+    1: 'день назад'
+    2: '%1 дня назад'
+    n: '%1 дней назад'

@@ -1,5 +1,7 @@
 class ApplicationController
   class Context < OpenStruct
+    include R18n::Helpers
+
     def partial(filename, context)
       ApplicationController.slim(filename, Context.new(context))
     end
@@ -16,11 +18,10 @@ class ApplicationController
     def time_ago(timestamp)
       delta = Time.now.to_i - timestamp
       case delta
-      when 0..30 then 'just now'
-      when 31..119 then 'about a minute ago'
-      when 120..3599 then "#{delta / 60} minutes ago"
-      when 3600..86_399 then "#{(delta / 3600).round} hours ago"
-      when 86_400..259_199 then "#{(delta / 86_400).round} days ago"
+      when 0..30 then t.time_ago.now
+      when 31..3599 then t.time_ago.minutes((delta / 60).round)
+      when 3600..86_399 then t.time_ago.hours((delta / 3600).round)
+      when 86_400..259_199 then t.time_ago.days((delta / 86_400).round)
       else Time.at(timestamp).strftime('%d %B %Y %H:%M')
       end
     end
@@ -28,6 +29,8 @@ class ApplicationController
 
   def initialize(env)
     @request = Rack::Request.new(env)
+    R18n.set('en')
+    R18n.set('ru') if params.has_key?('ru')
   end
 
   class << self

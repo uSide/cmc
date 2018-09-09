@@ -1,0 +1,35 @@
+currencies:
+  list: Currencies list
+  head:
+    rank: Rank
+    name: Name
+    market_cap: Market Cap
+    price: Price
+    avg_price: Avg Price
+    coin_price: Coin Price
+    supply: Circulating Supply
+    change: Change
+currency:
+  error: Unable to save currency info
+  market_cap: Market Cap
+  price: Price
+  supply: Circulating Supply
+  date: Date
+  back: Back
+  save: Save
+updated: Updated
+switch:
+  text: Русский
+  link: /?ru
+  lang: en
+time_ago:
+  now: just now
+  minutes: !!pl
+    1: about a minute ago
+    n: '%1 minutes ago'
+  hours: !!pl
+    1: an hour ago
+    n: '%1 hours ago'
+  days: !!pl
+    1: day ago
+    n: '%1 days ago'

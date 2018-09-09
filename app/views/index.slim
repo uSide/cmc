@@ -9,7 +9,7 @@ html lang="en"
     link rel="stylesheet" href="//unpkg.com/semantic-ui@2.3.3/dist/semantic.min.css"
     link rel="stylesheet" href="//unpkg.com/datatables.net-se@1.10.19/css/dataTables.semanticui.min.css"
     link rel="stylesheet" href="/css/app.css"
-  body
+  body data-lang=t.switch.lang
     #app
       - for currency in currencies
         == partial('currency', currency: currency)
@@ -18,20 +18,21 @@ html lang="en"
         h2.ui.header
           img.ui.circular.image src="/img/#{major.key}.svg"
           .content
-            | Currencies list
-            .sub.header Updated #{time_ago(Pull.last.created_at)}
+            | #{t.currencies.list}
+            .sub.header #{t.updated} #{time_ago(Pull.last.created_at)}
+          a.ui.right.floated.button href=t.switch.link = t.switch.text
 
         table#currencies.ui.celled.table style="width:100%"
           thead
             tr
-              th Rank
-              th Name
-              th Market Cap
-              th Price
-              th Avg Price
-              th Coin Price
-              th Circulating Supply
-              th Change
+              th = t.currencies.head.rank
+              th = t.currencies.head.name
+              th = t.currencies.head.market_cap
+              th = t.currencies.head.price
+              th = t.currencies.head.avg_price
+              th = t.currencies.head.coin_price
+              th = t.currencies.head.supply
+              th = t.currencies.head.change
           tbody
             - for currency in currencies
               tr data-currency=currency.key

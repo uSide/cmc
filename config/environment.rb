@@ -11,6 +11,9 @@ require 'rainbow'
 require 'faraday'
 require 'oj'
 require 'slim'
+require 'r18n-core'
+
+R18n.default_places = './config/locales/'
 
 # load app
 Dir[File.dirname(__FILE__) + '/../app/**/*.rb'].each { |file| require(file) }

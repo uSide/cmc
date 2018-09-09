@@ -1,16 +1,28 @@
 $(document).ready(function() {
-  $("#currencies").DataTable({
-    paging: false,
-    searching: false
-  });
+  var default_params = {};
+
+  if ($("body").data("lang") == "ru") {
+    default_params["language"] = {
+      url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"
+    };
+  }
+
+  $("#currencies").DataTable(
+    Object.assign({}, default_params, {
+      paging: false,
+      searching: false
+    })
+  );
 
   $("table[data-currency]").each(function() {
-    $(this).DataTable({
-      searching: false,
-      ordering: false,
-      pagingType: "full",
-      order: [[3, "desc"]]
-    });
+    $(this).DataTable(
+      Object.assign({}, default_params, {
+        searching: false,
+        ordering: false,
+        pagingType: "full",
+        order: [[3, "desc"]]
+      })
+    );
   });
 
   $("#currencies tr[data-currency]").click(function() {

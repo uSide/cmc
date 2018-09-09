@@ -19,6 +19,7 @@ gem 'faraday', '~> 0.15.2'
 gem 'oj', '~> 3.6', '>= 3.6.7'
 
 gem 'slim', '~> 4.0', '>= 4.0.1'
+gem 'r18n-core', '~> 3.1', '>= 3.1.2'
 
 group :development, :test do
   gem 'rspec', '~> 3.8'
