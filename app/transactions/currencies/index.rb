@@ -7,7 +7,7 @@ module Currencies
 
     def load
       currencies = Currency.eager_graph(:pulls)
-                           .order { pulls[:created_at] }
+                           .order { Sequel.desc(pulls[:created_at]) }
                            .all.map do |currency|
         currency.values
                 .slice(:id, :key, :name, :price, :avg_price, :supply)

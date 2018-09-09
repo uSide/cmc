@@ -7,16 +7,9 @@ module Pulls
 
     private
 
-    def now
-      Time.now.to_i
-    end
-
-    def day_ago
-      Time.now.to_i - (60 * 60 * 24)
-    end
-
     def load
-      Success(pulls: Pull.where(created_at: day_ago..now))
+      now = Time.now.to_i
+      Success(pulls: Pull.where(created_at: (now - 60 * 60 * 24)..now))
     end
 
     def group(input)

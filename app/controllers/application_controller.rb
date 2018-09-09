@@ -60,6 +60,8 @@ class ApplicationController
     {}
   end
 
+  protected
+
   def render(input)
     response = if input.key?(:html)
                  ApplicationController.slim(input[:html],
