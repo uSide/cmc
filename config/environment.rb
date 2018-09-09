@@ -1,5 +1,6 @@
 require 'dotenv'
 env = ENV.fetch('APP_ENV') { 'development' }
+ENV.store('APP_ENV', env)
 Dotenv.load(File.dirname(__FILE__) + "/../.env.#{env}")
 
 require_relative 'database'
