@@ -20,6 +20,7 @@ gem 'oj', '~> 3.6', '>= 3.6.7'
 
 gem 'slim', '~> 4.0', '>= 4.0.1'
 
-group :development do
+group :development, :test do
+  gem 'rspec', '~> 3.8'
   gem 'rubocop', '~> 0.58.2', require: false
 end

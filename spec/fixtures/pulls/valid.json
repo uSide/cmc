@@ -1,0 +1,36 @@
+[
+  {
+    "id": "bitcoin",
+    "name": "Bitcoin",
+    "symbol": "BTC",
+    "rank": "1",
+    "price_usd": "6399.29851635",
+    "price_btc": "1.0",
+    "24h_volume_usd": "4129354190.63",
+    "market_cap_usd": "110438613848",
+    "available_supply": "17257925.0",
+    "total_supply": "17257925.0",
+    "max_supply": "21000000.0",
+    "percent_change_1h": "-0.23",
+    "percent_change_24h": "-1.78",
+    "percent_change_7d": "-11.7",
+    "last_updated": "1536491240"
+  },
+  {
+    "id": "ethereum",
+    "name": "Ethereum",
+    "symbol": "ETH",
+    "rank": "2",
+    "price_usd": "200.828655022",
+    "price_btc": "0.03152876",
+    "24h_volume_usd": "1826808360.94",
+    "market_cap_usd": "20454204727.0",
+    "available_supply": "101849035.0",
+    "total_supply": "101849035.0",
+    "max_supply": null,
+    "percent_change_1h": "-1.55",
+    "percent_change_24h": "-8.56",
+    "percent_change_7d": "-31.86",
+    "last_updated": "1536491196"
+  }
+]
