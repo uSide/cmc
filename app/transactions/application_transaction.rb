@@ -21,6 +21,8 @@ class ApplicationTransaction
         result = exception.failure
       end
 
+      return result if ENV.fetch('APP_ENV') == 'test'
+
       total = ((Time.now - start).to_f * 1000).to_i
 
       msg = if result.success?

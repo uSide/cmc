@@ -1,4 +1,7 @@
-require 'dotenv/load'
+require 'dotenv'
+env = ENV.fetch('APP_ENV') { 'development' }
+Dotenv.load(File.dirname(__FILE__) + "/../.env.#{env}")
+
 require_relative 'database'
 require 'dry-transaction'
 require 'dry-validation'
