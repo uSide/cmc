@@ -22,7 +22,7 @@ html lang="en"
             .sub.header #{t.updated} #{time_ago(updated_at)}
           a.ui.right.floated.button href=t.switch.link = t.switch.text
 
-        table#currencies.ui.celled.table style="width:100%"
+        table#currencies.ui.celled.unstackable.table style="width:100%"
           thead
             tr
               th = t.currencies.head.rank

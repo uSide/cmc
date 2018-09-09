@@ -1,5 +1,6 @@
 #app {
   width: 1100px;
+  padding: 20px;
   margin: 25px auto;
 }
 
@@ -9,4 +10,8 @@
 
 #currencies tr td {
   cursor: pointer;
+}
+
+body{
+  overflow-x: auto;
 }

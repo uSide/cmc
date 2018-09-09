@@ -7,7 +7,7 @@
       .sub.header #{t.updated} #{time_ago(currency[:updated_at])}
   .ui.grid
     .eleven.wide.column
-      table.ui.celled.table data-currency=currency[:key] style="width:100%"
+      table.ui.celled.unstackable.table data-currency=currency[:key] style="width:100%"
         thead
           tr
             th = t.currency.market_cap
